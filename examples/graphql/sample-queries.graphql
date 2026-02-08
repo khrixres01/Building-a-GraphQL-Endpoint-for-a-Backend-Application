@@ -1,0 +1,22 @@
+
+# Sample GraphQL queries
+
+# Basic list
+query GetOutputs($first: Int!) {
+  kTNL_Outputts(first: $first) {
+    items {
+      BWART
+      MATNR
+      WERKS
+      MENGE
+    }
+  }
+}
+
+# With pagination (if supported)
+query GetOutputsWithPage($first: Int!, $after: String) {
+  kTNL_Outputts(first: $first, after: $after) {
+    items { BWART MATNR WERKS MENGE }
+    pageInfo { hasNextPage endCursor }
+  }
+}

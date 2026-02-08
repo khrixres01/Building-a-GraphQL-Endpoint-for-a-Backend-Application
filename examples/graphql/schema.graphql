@@ -1,0 +1,5 @@
+
+# schema.graphql (placeholder)
+
+# Export your schema from the Fabric API for GraphQL item and replace this file.
+# Do not include tenant‑sensitive details if your policy forbids it.
