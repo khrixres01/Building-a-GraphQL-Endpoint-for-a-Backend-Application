@@ -1,0 +1,341 @@
+"""
+The `@oneOf` directive is used within the type system definition language
+ to indicate:
+
+ - an Input Object is a Oneof Input Object, or
+ - an Object Type's Field is a Oneof Field.
+"""
+directive @oneOf on INPUT_OBJECT
+
+"""
+The purpose of the `cost` directive is to define a `weight` for GraphQL types, fields, and arguments. Static analysis can use these weights when calculating the overall cost of a query or response.
+"""
+directive @cost(
+  """
+  The `weight` argument defines what value to add to the overall cost for every appearance, or possible appearance, of a type, field, argument, etc.
+  """
+  weight: String!
+) on SCALAR | OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION | ENUM | INPUT_FIELD_DEFINITION
+
+"""A directive to indicate the primary key field of an item."""
+directive @primaryKey(
+  """The underlying database type."""
+  databaseType: String
+) on FIELD_DEFINITION
+
+"""A directive to indicate the enabled state of a node."""
+directive @isEnabled(
+  """The enabled state of the query or mutation."""
+  enabledValue: Boolean
+) on FIELD_DEFINITION
+
+"""
+A directive to indicate the type maps to a storable entity not a nested entity.
+"""
+directive @model(
+  """Underlying name of the database entity."""
+  name: String
+) on OBJECT | FIELD_DEFINITION
+
+enum OrderBy {
+  ASC
+  DESC
+}
+
+input DefaultValue {
+  Byte: Byte
+  Short: Short
+  Int: Int
+  Long: Long
+  String: String
+  Boolean: Boolean
+  Single: Single
+  Float: Float
+  Decimal: Decimal
+  DateTime: DateTime
+  ByteArray: ByteArray
+  LocalTime: LocalTime
+}
+
+"""Aggregation type for KTNL_Outputt"""
+type KTNL_OutputtAggregations {
+  """Maximum value for numeric fields"""
+  max(
+    """Field to aggregate on"""
+    field: KTNL_OutputtNumericAggregateFields!
+
+    """Filter criteria for aggregation"""
+    having: DecimalFilterInput
+
+    """Whether to aggregate on distinct values"""
+    distinct: Boolean = false
+  ): Float
+
+  """Minimum value for numeric fields"""
+  min(
+    """Field to aggregate on"""
+    field: KTNL_OutputtNumericAggregateFields!
+
+    """Filter criteria for aggregation"""
+    having: DecimalFilterInput
+
+    """Whether to aggregate on distinct values"""
+    distinct: Boolean = false
+  ): Float
+
+  """Average value"""
+  avg(
+    """Field to aggregate on"""
+    field: KTNL_OutputtNumericAggregateFields!
+
+    """Filter criteria for aggregation"""
+    having: DecimalFilterInput
+
+    """Whether to aggregate on distinct values"""
+    distinct: Boolean = false
+  ): Float
+
+  """Sum of values"""
+  sum(
+    """Field to aggregate on"""
+    field: KTNL_OutputtNumericAggregateFields!
+
+    """Filter criteria for aggregation"""
+    having: DecimalFilterInput
+
+    """Whether to aggregate on distinct values"""
+    distinct: Boolean = false
+  ): Float
+
+  """Count of numeric values"""
+  count(
+    """Field to aggregate on"""
+    field: KTNL_OutputtNumericAggregateFields!
+
+    """Filter criteria for aggregation"""
+    having: DecimalFilterInput
+
+    """Whether to aggregate on distinct values"""
+    distinct: Boolean = false
+  ): Int
+}
+
+"""GroupBy type for KTNL_Outputt"""
+type KTNL_OutputtGroupBy {
+  """Grouped fields from KTNL_Outputt"""
+  fields: KTNL_Outputt
+
+  """Aggregations for KTNL_Outputt"""
+  aggregations: KTNL_OutputtAggregations
+}
+
+type KTNL_Outputt {
+  BWART: String
+  MATNR: String
+  WERKS: String
+  MENGE: Decimal
+  MTART: String
+}
+
+type DbOperationResult {
+  """Contains result for mutation execution"""
+  result: String
+}
+
+"""Fields available for aggregation in KTNL_Outputt"""
+enum KTNL_OutputtNumericAggregateFields {
+  MENGE
+}
+
+"""Scalar fields available in KTNL_Outputt"""
+enum KTNL_OutputtScalarFields {
+  BWART
+  MATNR
+  WERKS
+  MENGE
+  MTART
+}
+
+"""Order by input for KTNL_Outputt GraphQL type"""
+input KTNL_OutputtOrderByInput {
+  """Order by options for BWART"""
+  BWART: OrderBy
+
+  """Order by options for MATNR"""
+  MATNR: OrderBy
+
+  """Order by options for WERKS"""
+  WERKS: OrderBy
+
+  """Order by options for MENGE"""
+  MENGE: OrderBy
+
+  """Order by options for MTART"""
+  MTART: OrderBy
+}
+
+"""Input type for adding String filters"""
+input StringFilterInput {
+  """Equals"""
+  eq: String
+
+  """Contains"""
+  contains: String
+
+  """Not Contains"""
+  notContains: String
+
+  """Starts With"""
+  startsWith: String
+
+  """Ends With"""
+  endsWith: String
+
+  """Not Equals"""
+  neq: String
+
+  """Not null test"""
+  isNull: Boolean
+
+  """In"""
+  in: [String]
+}
+
+"""Input type for adding Decimal filters"""
+input DecimalFilterInput {
+  """Equals"""
+  eq: Decimal
+
+  """Greater Than"""
+  gt: Decimal
+
+  """Greater Than or Equal To"""
+  gte: Decimal
+
+  """Less Than"""
+  lt: Decimal
+
+  """Less Than or Equal To"""
+  lte: Decimal
+
+  """Not Equals"""
+  neq: Decimal
+
+  """Not null test"""
+  isNull: Boolean
+
+  """In"""
+  in: [Decimal]
+}
+
+"""Filter input for KTNL_Outputt GraphQL type"""
+input KTNL_OutputtFilterInput {
+  """Filter options for BWART"""
+  BWART: StringFilterInput
+
+  """Filter options for MATNR"""
+  MATNR: StringFilterInput
+
+  """Filter options for WERKS"""
+  WERKS: StringFilterInput
+
+  """Filter options for MENGE"""
+  MENGE: DecimalFilterInput
+
+  """Filter options for MTART"""
+  MTART: StringFilterInput
+
+  """Conditions to be treated as AND operations"""
+  and: [KTNL_OutputtFilterInput]
+
+  """Conditions to be treated as OR operations"""
+  or: [KTNL_OutputtFilterInput]
+}
+
+"""
+The return object from a filter query that supports a pagination token for paging through results
+"""
+type KTNL_OutputtConnection {
+  """The list of items that matched the filter"""
+  items: [KTNL_Outputt!]!
+
+  """A pagination token to provide to subsequent pages of a query"""
+  endCursor: String
+
+  """Indicates if there are more pages of items to return"""
+  hasNextPage: Boolean!
+
+  """Group results by specified fields"""
+  groupBy(
+    """Fields to group by"""
+    fields: [KTNL_OutputtScalarFields!]
+  ): [KTNL_OutputtGroupBy!]!
+}
+
+type Query {
+  """Get a list of all the KTNL_Outputt items from the database"""
+  kTNL_Outputts(
+    """The number of items to return from the page start point"""
+    first: Int
+
+    """
+    A pagination token from a previous query to continue through a paginated list
+    """
+    after: String
+
+    """Filter options for query"""
+    filter: KTNL_OutputtFilterInput
+
+    """Ordering options for query"""
+    orderBy: KTNL_OutputtOrderByInput
+  ): KTNL_OutputtConnection!
+}
+
+"""Defines when a policy shall be executed."""
+enum ApplyPolicy {
+  """Before the resolver was executed."""
+  BEFORE_RESOLVER
+
+  """After the resolver was executed."""
+  AFTER_RESOLVER
+
+  """The policy is applied in the validation step before the execution."""
+  VALIDATION
+}
+
+"""
+The `Byte` scalar type represents non-fractional whole numeric values. Byte can represent values between 0 and 255.
+"""
+scalar Byte
+
+"""
+The `Short` scalar type represents non-fractional signed whole 16-bit numeric values. Short can represent values between -(2^15) and 2^15 - 1.
+"""
+scalar Short
+
+"""
+The `Long` scalar type represents non-fractional signed whole 64-bit numeric values. Long can represent values between -(2^63) and 2^63 - 1.
+"""
+scalar Long
+
+"""IEEE 754 32 bit float"""
+scalar Single
+
+"""The `Decimal` scalar type represents a decimal floating-point number."""
+scalar Decimal
+
+"""The `DateTime` scalar represents an ISO-8601 compliant date time type."""
+scalar DateTime
+
+scalar ByteArray
+
+"""
+LocalTime represents a time of day, with no reference to a particular calendar, time zone, or date.
+
+Allowed patterns:
+- `hh:mm:ss.sssssssss`
+
+Examples:
+- `20:00:00.999`
+"""
+scalar LocalTime

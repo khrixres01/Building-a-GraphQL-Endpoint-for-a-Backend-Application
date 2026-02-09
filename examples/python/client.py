@@ -7,7 +7,7 @@ try:
     from dotenv import load_dotenv
     load_dotenv()
 except Exception:
-    pass  # dotenv is optional if environment variables are already present
+    pass 
 
 TENANT_ID = os.getenv("TENANT_ID")
 CLIENT_ID = os.getenv("CLIENT_ID")
@@ -18,7 +18,7 @@ TIMEOUT = int(os.getenv("REQUEST_TIMEOUT", "30"))
 if not all([TENANT_ID, CLIENT_ID, CLIENT_SECRET, GRAPHQL_ENDPOINT]):
     raise RuntimeError("Missing required environment variables. Check your .env file.")
 
-# 1) Acquire token
+
 TOKEN_URL = f"https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/token"
 body = {
     "grant_type": "client_credentials",
@@ -58,3 +58,6 @@ try:
 except Exception:
     print("Raw response:
 ", r.text)
+)
+    
+    
