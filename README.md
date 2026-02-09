@@ -1,7 +1,8 @@
 # Building-a-GraphQL-Endpoint-for-a-Backend-Application
+### Fabric GraphQL Delivery (Dataflow + GraphQL + SP + Python)
 A practical guide to create a Microsoft Fabric Graphql Endpoint from a dataflow Gen2 table 
 
-# Fabric GraphQL Delivery (Dataflow + GraphQL + SP + Python)
+
 
 This repository documents and demonstrates the setup for:
 - Curating data with **Dataflow Gen2** (filters + scheduled refresh)
